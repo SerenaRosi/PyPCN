@@ -1,6 +1,6 @@
 # PyPCN: Protein Contact Networks in PyMOL
 
-## A user-friendly PyMOL plugin for computing and visualizing Protein Contact Networks
+## A user-friendly PyMOL plugin for computation, visualization and analysis of Protein Contact Networks
 
 Protein Contact Networks (PCNs) are a way to represent the tridimensional structure of a protein, allowing at the same time to simplify the description of protein complexity and apply the typical network formalism in the description of the structure-function relationship in proteins. Inter-residue contacts are described as binary adjacency matrices, which are derived from the graph representation of the α-carbons and distances according to defined thresholds. Algorithms for functional characterization, i.e. clustering techniques, centrality measures and community extractions metrics, are computed on binary adjacency matrices to unveil allosteric, dynamic and interaction mechanisms in proteins. Such strategies are commonly applied in a combinatorial way, albeit rarely found in seamless and user-friendly implementations. In this context, PCN-Miner is a Python module for integrating different algorithms and metrics dedicated to the analyses of PCNs. We have now integrated PCN-Miner in PyPCN, **an open-source PyMOL plugin to provide a GUI for assisting PCNs analyses**. A dedicated GUI, together with the visual support provided by PyMOL, makes the analysis more intuitive and simple, in a way that broadens the applicability of the analysis of proteins as PCNs.
 
