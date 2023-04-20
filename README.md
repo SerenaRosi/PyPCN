@@ -42,6 +42,13 @@ You will be asked to give the path of the directory in which to install the plug
 
 ## Dependencies 
 
+The automatic installation of the dependencies is only supported by PyMOL version >= 2.5
+
+
+## Threads 
+
+
+
 ## Tested platforms 
 
 | PyMOL version |          Operating system          |         PyMOL source             |      
