@@ -43,7 +43,11 @@ You will be asked to give the path of the directory in which to install the plug
 
 ## Dependencies 
 
-Some dependencies, which are not distributed along with PyMOL, must be installed. PyPCN is equipped with an **automatic installation** process, but only available on Incentive PyMOL version 2.5.
+### Automatic Installation
+
+Some dependencies, which are not distributed along with PyMOL, must be installed. PyPCN is equipped with an **Automatic Installation** process, but only available on Incentive PyMOL version 2.5.
+
+### Manual Installation
 
 Please follow the instructions reported below for those cases in which the automatic installation is not supported (i.e. Open-Source PyMOL, Incentive PyMOL versions lower than 2.5, PyMOL setups in which the automatic installation fails for not widely known reasons). 
 
@@ -97,19 +101,19 @@ Usually, in a newly created environment, Biopython and matplotlib are not instal
 
 |      Name     |       Installation with pip        |            Other                 |      
 |:-------------:|:----------------------------------:|:--------------------------------:|
-|     2.5.2     | Linux (Ubuntu 20.04.3 LTS), 64-bit |          Incentive               |
-|     2.5.1     | Linux (Ubuntu 21.04), 64-bit       |   Incentive (Conda package)      |
-|     2.5.2     | Linux (Ubuntu 18.04.2 LTS), 64-bit |          Incentive               |
-|     2.5.0     | Linux (Ubuntu 21.04), 64-bit       |   Open source (Conda package)    |
-|     2.5.0     | Linux (Ubuntu 20.04.3 LTS), 64-bit |   Open source (Conda package)    |
-|     2.4.1     | Windows (v.10 Home), 64-bit        |          Incentive               |
-|     2.5.2     | Windows (v.10 Pro), 64-bit         |          Incentive               |
-|     2.5.0     | Windows (v.10 Pro), 64-bit         |  Open source (Conda package)     |
-|     2.5.2     | MacOS (High Sierra v.10.13.6)      |          Incentive               |
-|     2.4.0     | MacOS (High Sierra v.10.13.6)      |  Open source (Conda package)     |
-|     2.5.2     | MacOS (Monterey v.12.2.1)          |          Incentive               |
-|     2.5.2     | MacOS (Big Sur v.11.6.5)           |          Incentive               |
-|     2.4.0     | MacOS (Big Sur v.11.6.5)           |  Open source (Conda package)     |
+|    fcmeans    | pip install fuzzy-c-means          |                         |
+|     gem       | pip install git+https://github.com/palash1992/GEM.git       | https://anaconda.org/hcc/gem      |
+|     cdlib     | pip install cdlib                  |  https://anaconda.org/Yquetzal/cdlib               |
+|     pytz      | pip install pytz                   |  https://anaconda.org/conda-forge/pytz   |
+|   node2vec    | pip install node2vec               |  https://anaconda.org/conda-forge/node2vec    |
+|   leidenalg   | pip install leidenalg              |  https://anaconda.org/conda-forge/leidenalg               |
+|    sklearn    | pip install sklearn                |  https://anaconda.org/anaconda/scikit-learn               |
+|  matplotlib   | pip install matplotlib             |  https://anaconda.org/conda-forge/matplotlib    |
+|   infomap     | pip install infomap                |  https://anaconda.org/conda-forge/infomap               |
+|   wurlitzer   | pip install wurlitzer              |  https://anaconda.org/conda-forge/wurlitzer     |
+|   karateclub  | pip install karateclub             |  https://anaconda.org/conda-forge/karateclub               |
+|    ASLPAw     | pip install ASLPAw                 |                         |
+|     Graph     | pip install graph-tools            |  https://anaconda.org/conda-forge/graph-tool    |
 
 
 ## Threads 
