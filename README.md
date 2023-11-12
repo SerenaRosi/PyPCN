@@ -25,7 +25,7 @@ PyPCN is distributed freely to the public and it has been tested and runs on Win
 
 ## Cite
 
-If you use DockingPie in your work, please cite:
+If using PyPCN in your work, please cite:
 
 Serena Rosignoli, Luisa Di Paola and Alessandro Paiardini, PyPCN: protein contact networks in PyMOL, Bioinformatics, 2023, btad675, [DOI](https://doi.org/10.1093/bioinformatics/btad675 "Rosignoli et al., Bioinformatics,2023")
 
