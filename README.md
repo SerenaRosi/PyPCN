@@ -2,12 +2,12 @@
 
 ## A user-friendly PyMOL plugin for computation, visualization and analysis of Protein Contact Networks
 
-Protein Contact Networks (PCNs) are a way to represent the tridimensional structure of a protein, allowing at the same time to simplify the description of protein complexity and apply the typical network formalism in the description of the structure-function relationship in proteins. Inter-residue contacts are described as binary adjacency matrices, which are derived from the graph representation of the α-carbons and distances according to defined thresholds. Algorithms for functional characterization, i.e. clustering techniques, centrality measures and community extractions metrics, are computed on binary adjacency matrices to unveil allosteric, dynamic and interaction mechanisms in proteins. Such strategies are commonly applied in a combinatorial way, albeit rarely found in seamless and user-friendly implementations. In this context, PCN-Miner is a Python module for integrating different algorithms and metrics dedicated to the analyses of PCNs. We have now integrated PCN-Miner in PyPCN, **an open-source PyMOL plugin to provide a GUI for assisting PCNs analyses**. A dedicated GUI, together with the visual support provided by PyMOL, makes the analysis more intuitive and simple, in a way that broadens the applicability of the analysis of proteins as PCNs.
+Protein Contact Networks (PCNs) are a way to represent the tridimensional structure of a protein, allowing at the same time to simplify the description of protein complexity and apply the typical network formalism in the description of the structure-function relationship in proteins. Inter-residue contacts are described as binary adjacency matrices, which are derived from the graph representation of residues (as α-carbons, β-carbons or centroids) and Euclidean distances according to defined thresholds. Algorithms for functional characterization, i.e. clustering techniques, centrality measures and community extraction metrics, are computed on binary adjacency matrices to unveil allosteric, dynamic and interaction mechanisms in proteins. Such strategies are commonly applied in a combinatorial way, albeit rarely found in seamless and user-friendly implementations. In this context, PCN-Miner is a Python module for integrating different algorithms and metrics dedicated to the analyses of PCNs. We have now integrated PCN-Miner in PyPCN, **an open-source PyMOL plugin to provide a GUI for assisting PCNs analyses**. A dedicated GUI, together with the visual support provided by PyMOL, makes the analysis more intuitive and simple, in a way that broadens the applicability of the analysis of proteins as PCNs.
 
 Some general features:
 
 - Handling of either PDBs or pre-computed adjacency matrices as inputs.
-- Mapping of the results onto 3D protein structures providing an intelligible visualization. 
+- Mapping of the results onto 3D protein structures provides an intelligible visualization. 
 - Support for more than 24 algorithms for PCN analyses. 
 - Visualization of contact matrices as interactive plots. 
 
@@ -21,8 +21,13 @@ PyPCN is compatible with incentive PyMOL builds distributed by [Schrodinger](htt
 
 PyPCN is distributed freely to the public and it has been tested and runs on Windows, macOS and Linux versions of PyMOL.
 
-(Some incompatibilities may arise with the usage of PyMOL version 2.5.x if ‘undo’ function is enabled, which in PyMOL 2.5.2 still shows some shortcomings. Therefore, when the plugin is opened, the ‘undo’ function is automatically disabled and it is strongly suggested to keep it disabled when using the plugin.)
+(Some incompatibilities may arise with the usage of PyMOL version 2.5.x if the ‘undo’ function is enabled, which in PyMOL 2.5.2 still shows some shortcomings. Therefore, when the plugin is opened, the ‘undo’ function is automatically disabled and it is strongly suggested to keep it disabled when using the plugin.)
 
+## Cite
+
+If you use DockingPie in your work, please cite:
+
+Serena Rosignoli, Luisa Di Paola and Alessandro Paiardini, PyPCN: protein contact networks in PyMOL, Bioinformatics, 2023, btad675, [DOI](https://doi.org/10.1093/bioinformatics/btad675 "Rosignoli et al., Bioinformatics,2023")
 
 ## Download :inbox_tray:
 
