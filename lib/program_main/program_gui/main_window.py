@@ -198,7 +198,7 @@ class PCN_Miner_main_window_qt(QtWidgets.QMainWindow, PCN_Miner_main_window_main
                     QtWidgets.QMessageBox.warning(self, "Automatic Installation Completed", "Please restart PyMOL and check if all dependecies have been installed.\n\nThe automatic installation may fail because:\n- your PyMOL setup does not support it (e.g. Open-Source or Incentive versions < 2.5)\n- only some dependencies are failing to be installed due to not widely known reasons (check output messages on PyMOL prompt).\n\nFor further information, please check requirements in the PyPCN User's Guide.")
 
             else:
-                QtWidgets.QMessageBox.warning(self, "Manual Installation Warning", "Please read the instructions in the PyPCN User's Guide at:")
+                QtWidgets.QMessageBox.warning(self, "Manual Installation Warning", "Please read the instructions in the PyPCN User's Guide at: https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf")
 
 # fcmeans: pip install fuzzy-c-means
 # gem: pip install git+https://github.com/palash1992/GEM.git
