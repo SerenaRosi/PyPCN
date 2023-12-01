@@ -33,7 +33,7 @@ Serena Rosignoli, Luisa Di Paola and Alessandro Paiardini, PyPCN: protein contac
 
 PyPCN plugin ZIP file: [download from here](https://github.com/pcnproject/PyPCN/archive/refs/heads/main.zip "PyPCN plugin ZIP file direct download") 
 
-User's Guide: [download from here](https://github.com/pcnproject/PyPCN/releases/download/utilities/PyPCN_User_Guide.pdf "PyPCN User's Guide download" )
+User's Guide: [download from here](https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf "PyPCN User's Guide download" )
 
 ## Plugin Installation 
  
@@ -47,8 +47,8 @@ PyPCN is installed via the PyMOL plugin manager:
 You will be asked to give the path of the directory in which to install the plugin files. Just select the default option if you are unsure about what to do (the location of the plugin files does not make any difference when running the plugin).
 
 ## Quick Guide
-The graphical summary below (Figures 6.1.1-2 in the [User's Guide](https://github.com/pcnproject/PyPCN/releases/download/utilities/PyPCN_User_Guide.pdf)) shows how to setup the INPUTS tab. The successive step is just to run the analysis exploring the remaining tabs (default settings are sufficient).
-**Note:** It has been observed that in some environments the use of parallel threads is not supported, if PyMOL unexpectedly crashes during some of the processes, please try again by unchecking the option ‘Use Threads’ tag [10] in the figure below (Figure 6.1.2 in the [User's Guide](https://github.com/pcnproject/PyPCN/releases/download/utilities/PyPCN_User_Guide.pdf)).
+The graphical summary below (Figures 6.1.1-2 in the [User's Guide](https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf)) shows how to setup the INPUTS tab. The successive step is just to run the analysis exploring the remaining tabs (default settings are sufficient).
+**Note:** It has been observed that in some environments the use of parallel threads is not supported, if PyMOL unexpectedly crashes during some of the processes, please try again by unchecking the option ‘Use Threads’ tag [10] in the figure below (Figure 6.1.2 in the [User's Guide](https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf)).
 
 ![quickguide_1](https://user-images.githubusercontent.com/68196372/234589429-2a529a56-51c7-431b-b9b1-e3b09f19475f.png)
 
