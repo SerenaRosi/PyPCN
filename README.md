@@ -56,12 +56,33 @@ The graphical summary below (Figures 6.1.1-2 in the [User's Guide](https://githu
 
 ## Dependencies 
 
+### Known issue blocking the opening of the plugin
+
+Some macOS setups get this error message when opening the plugin.
+
+To solve it follow these steps:
+ - Installa Homebrew if missing (https://brew.sh/)
+ - Install missing libraries:
+   brew install libx11
+   brew install libX11.6
+
+    Riavviare.
+<img width="417" alt="image001(1)(1)" src="https://github.com/pcnproject/PyPCN/assets/68196372/7046d097-7ae9-440c-83ed-c9fef9080350">
+
 ### Automatic Installation :arrow_left:
 
-Some dependencies, which are not distributed along with PyMOL, must be installed. PyPCN is equipped with an **Automatic Installation** process, but only available on Incentive PyMOL version 2.5.
+Some dependencies, which are not distributed along with PyMOL, must be installed. 
 
-If GEM library fails to be installed, please make sure you have Git installed on your machine (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-Users are experiencing problems with Git after updating to macOS Ventura; please visit this page for further details (https://levelup.gitconnected.com/fix-invalid-active-developer-path-macos-upgrade-1b8afedb690a)
+PyPCN is equipped with an **Automatic Installation** process: 
+  Open the plugin -> click on Install Automatically -> wait -> RESTART PyMOL
+
+If PyPCN continues to prompt you the installation process upon opening, it means that some libraries have not being installed.
+
+Common problems: 
+ - If GEM library fails to be installed, please make sure you have Git installed on your machine (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+ - Users are experiencing problems with Git after updating to macOS Ventura; please visit this page for further details visit this page: https://mattkomarnicki.com/articles/how-to-fix-broken-git-after-upgrading-to-macos-ventura.
+ - Is it NORMAl that Wurlizter module can't be installed on Windows OS, just ignore it by clicking on 'Install Manually'
+
 
 ### Manual Installation
 
