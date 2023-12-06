@@ -61,12 +61,13 @@ The graphical summary below (Figures 6.1.1-2 in the [User's Guide](https://githu
 Some macOS setups get this error message when opening the plugin.
 
 To solve it follow these steps:
- - Installa Homebrew if missing (https://brew.sh/)
+ - Install Homebrew if missing (https://brew.sh/)
  - Install missing libraries:
+   
    brew install libx11
+   
    brew install libX11.6
 
-    Riavviare.
 <img width="417" alt="image001(1)(1)" src="https://github.com/pcnproject/PyPCN/assets/68196372/7046d097-7ae9-440c-83ed-c9fef9080350">
 
 ### Automatic Installation :arrow_left:
