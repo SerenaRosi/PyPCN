@@ -82,7 +82,7 @@ If PyPCN continues to prompt you the installation process upon opening, it means
 Common problems: 
  - If GEM library fails to be installed, please make sure you have Git installed on your machine (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
  - Users are experiencing problems with Git after updating to macOS Ventura; please visit this page for further details visit this page: https://mattkomarnicki.com/articles/how-to-fix-broken-git-after-upgrading-to-macos-ventura.
- - Is it NORMAl that Wurlizter module can't be installed on Windows OS, just ignore it by clicking on 'Install Manually'
+ - It is NORMAL that Wurlizter module can't be installed on Windows OS, just ignore it by clicking on 'Install Manually'
 
 
 ### Manual Installation
