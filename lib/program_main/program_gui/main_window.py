@@ -22,6 +22,55 @@ from .tabs import CHILD_TAB, INPUTStab_widgets, CENTRALITYtab_widgets, SPECTRALt
 import warnings
 import math
 
+import subprocess
+import importlib.util
+import requests
+
+
+#Install pip-tools if it's not already installed.
+def pip_tools_install():
+    # Check if pip-tools is already installed
+    if importlib.util.find_spec("pip-tools") is not None:
+        print("pip-tools is already installed.")
+        return
+    else:
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "pip-tools"])
+            print("pip-tools installed successfully.")
+        except subprocess.CalledProcessError:
+            print("Failed to install pip-tools. Check your internet connection or pip configuration.")
+
+pip_tools_install()
+
+#Install GitPython using pip-tools as an alternative to pip
+def gitpython_pip_tools_install():
+
+    dependencies = ["GitPython"]
+
+    with open("requirements_git.in", "w") as f:
+        f.write("\n".join(dependencies))
+    print("Created requirements_git.in with dependencies.")
+
+    try:
+        subprocess.check_call(["pip-compile", "requirements_git.in", "--output-file", "requirements_git.txt"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements_git.txt"])
+        print("GitPython installed successfully via pip-tools.")
+    except subprocess.CalledProcessError:
+        print("Error occurred during GitPython installation via pip-tools.")
+
+#Attempt to install GitPython with pip, fallback to pip-tools  if it fails.
+def gitpython_install():
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "gitpython"])
+        __import__("git")
+        print("GitPython installed and imported successfully.")
+    except (subprocess.CalledProcessError, ImportError):
+        print("Error: GitPython installation with pip failed, trying pip-tools...")
+        gitpython_pip_tools_install()
+
+gitpython_install()
+
+import git 
 
 class PCN_Miner_main_window_main_menu:
 
@@ -111,6 +160,87 @@ class PCN_Miner_main_window_qt(QtWidgets.QMainWindow, PCN_Miner_main_window_main
 
         self.check_dependencies()
 
+    #Function to retrieve the github link to download a specific dep from source
+    def get_github_repo_url(self,dep_name):
+        
+        
+        search_url = f"https://api.github.com/search/repositories?q={dep_name}+in:name"
+        
+        response = requests.get(search_url)
+        
+        if response.status_code == 200:
+        
+            data = response.json()
+            if data['items']:
+                repo = data['items'][0]  
+                repo_url = repo['html_url']
+                print(f"Found repository URL for {dep_name}: {repo_url}")
+                return repo_url
+            else:
+                print(f"No repository found for {dep_name}.")
+                return None
+        else:
+            print(f"Failed to retrieve data from GitHub API. Status code: {response.status_code}")
+            return None
+        
+    #Alternative installation method for a specific dep using Git if pip fails
+    def dep_git_source_installation(self,dep):
+
+        depo_url=self.get_github_repo_url(dep)
+        if not depo_url:
+            print(f"Could not find URL for {dep}. Installation aborted.")
+            return
+
+        clone_dir = os.path.join(os.getcwd(), f"{dep}")
+        if os.path.exists(clone_dir):
+            shutil.rmtree(clone_dir)
+        git.Repo.clone_from(depo_url, clone_dir)
+        os.chdir(clone_dir)
+        try:
+            subprocess.run(["make", "-j"], check=True)
+            print(f"{dep} built successfully from source.")
+        except subprocess.CalledProcessError:
+            print(f"Error building {dep} from source.")
+
+   #Alternative for gem, using git if pip not working
+    def gem_alternatives(self):
+        dep="gem"
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "git+https://github.com/palash1992/GEM.git"])
+            __import__("gem")
+            print("Gem installed and imported successfully.")
+        except:
+            self.dep_git_source_installation(dep)
+
+    #General function: Install dependencies using pip-tools if pip is not working
+    def dependencies_pip_tools_alternative(self, dep):
+    
+        pip_tools_install()
+        
+        for package in dep:
+            with open(f"requirements_{package}.in", "w") as f:
+                f.write(package)
+            print(f"Created requirements_{package}.in with dependency: {package}")
+            try:
+                subprocess.check_call([sys.executable, "-m", "pip-tools", "compile", f"requirements_{package}.in", "--output-file", f"requirements_{package}.txt"])
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", f"requirements_{package}.txt"])
+                print(f"{package} installed successfully via pip-tools.")
+            except subprocess.CalledProcessError:
+                print(f"Error occurred during installation of {package}.")
+            
+    #Function to install the dependencies and try all the methods if one fails
+    def install_dependencies(self, list_of_missing_dep):
+        for dep in list_of_missing_dep:
+            try:
+                cmd.do(dep[1])
+            except:
+                if dep == "infomap":
+                    self.dep_git_source_installation(dep)
+                elif dep == "gem":
+                    self.gem_alternatives()
+                else:
+                    self.dependencies_pip_tools_alternative(dep)
+                
 
     def check_dependencies(self):
 
@@ -129,25 +259,25 @@ class PCN_Miner_main_window_qt(QtWidgets.QMainWindow, PCN_Miner_main_window_main
 
         list_of_dependencies = ["configparser", "scipy", "fcmeans", "gem", "cdlib", "pytz", "node2vec", "leidenalg", "sklearn", "matplotlib", "infomap", "wurlitzer",
         "karateclub", "ASLPAw", "Graph", "pandas"]
-
         dict_dep = {}
         dict_dep["configparser"] = "pip install configparser"
         dict_dep["scipy"] = "pip install scipy"
         dict_dep["regex"] = "pip install regex"
         dict_dep["fcmeans"] = "pip install fuzzy-c-means"
 
-        dict_dep["gem"] = "pip install git+https://github.com/palash1992/GEM.git"
+        dict_dep["gem"] = "pip install gem" 
+        
         dict_dep["cdlib"] = "pip install cdlib"
         dict_dep["pytz"] = "pip install pytz"
 
         dict_dep["node2vec"] = "pip install node2vec"
         dict_dep["leidenalg"] = "pip install leidenalg"
-        dict_dep["sklearn"] = "pip install sklearn"
+        dict_dep["sklearn"] = "pip install scikit-learn"
 
         dict_dep["matplotlib"] = "pip install matplotlib"
         dict_dep["infomap"] = "pip install infomap"
         dict_dep["wurlitzer"] = "pip install wurlitzer"
-        dict_dep["karateclub"] = "pip install karateclub"
+        dict_dep["karateclub"] = "pip install karateclub==1.3.2"
         dict_dep["ASLPAw"] = "pip install ASLPAw"
         dict_dep["Graph"] = "pip install graph-tools"
         dict_dep["pandas"] = "pip install pandas"
@@ -188,18 +318,31 @@ class PCN_Miner_main_window_qt(QtWidgets.QMainWindow, PCN_Miner_main_window_main
                                  message = message,
                                  parent = self,
                                  buttons_text = [button_1_text, button_2_text])
-
             if choice:
-                q = QtWidgets.QMessageBox.question(self, "Automatic Installation Warning", "The automatic installation will proceed with the installation of all the missing dependencies in the PyMOL environment.\nThis may take some time. Please be patient.\n\nDo you really want to continue?")
+                # Create a string of all dependencies to be installed
+                dependencies_str = ", ".join([str(dep[0]) for dep in list_of_missing_dep if dep[0] in message])
+
+                q = QtWidgets.QMessageBox.question(self, 
+                                                "Automatic Installation Warning", 
+                                                f"The automatic installation will proceed with the installation of the following missing dependencies in the PyMOL environment:\n{dependencies_str}.\nThis may take some time. Please be patient.\n\nDo you really want to continue?")
                 if q == QtWidgets.QMessageBox.Yes:
-                    for dep in list_of_missing_dep:
-                        cmd.do(dep[1])
-
-                    QtWidgets.QMessageBox.warning(self, "Automatic Installation Completed", "Please restart PyMOL and check if all dependecies have been installed.\n\nThe automatic installation may fail because:\n- your PyMOL setup does not support it (e.g. Open-Source or Incentive versions < 2.5)\n- only some dependencies are failing to be installed due to not widely known reasons (check output messages on PyMOL prompt).\n\nFor further information, please check requirements in the PyPCN User's Guide.")
-
+                    # Install all dependencies that need installation
+                    
+                    self.install_dependencies(list_of_missing_dep)
+                else:
+                    QtWidgets.QMessageBox.warning(self, 
+                                                "Manual Installation Warning", 
+                                                "Please read the instructions in the PyPCN User's Guide at: https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf")
             else:
-                QtWidgets.QMessageBox.warning(self, "Manual Installation Warning", "Please read the instructions in the PyPCN User's Guide at: https://github.com/pcnproject/PyPCN/releases/download/utilities/Supplementary-PyPCN_User_Guide.pdf")
-
+                QtWidgets.QMessageBox.warning(self, 
+                                            "Automatic Installation Completed", 
+                                            "Please restart PyMOL and check if all dependencies have been installed.\n\nThe automatic installation may fail because:\n- your PyMOL setup does not support it (e.g. Open-Source or Incentive versions < 2.5)\n- only some dependencies are failing to be installed due to not widely known reasons (check output messages on PyMOL prompt).\n\nFor further information, please check requirements in the PyPCN User's Guide.")
+        else:
+        #When reopening plugin, if no dependencies are missing, show the info message
+            QtWidgets.QMessageBox.information(self, 
+                                        "Automatic Installation Completed", 
+                                        "All dependencies have been successfully installed.")
+                    
 # fcmeans: pip install fuzzy-c-means
 # gem: pip install git+https://github.com/palash1992/GEM.git
 # cdlib: pip install cdlib
